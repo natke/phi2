@@ -8,6 +8,8 @@ tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-2", trust_remote_code=T
 
 model = ORTModelForCausalLM.from_pretrained("microsoft/phi-2", trust_remote_code=True, export=True)
 
+model.save_pretrained(f"models/microsoft/phi-2")
+
 inputs = tokenizer('''def print_prime(n):
    """
    Print all primes between 1 and n
