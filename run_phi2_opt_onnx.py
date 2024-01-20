@@ -2,7 +2,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from optimum.onnxruntime import ORTModelForCausalLM
 
-#torch.set_default_device("cuda")
+torch.set_default_device("cuda")
 
 tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-2", trust_remote_code=True)
 

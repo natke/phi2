@@ -2,13 +2,13 @@ import datetime
 from transformers import AutoTokenizer
 from optimum.onnxruntime import ORTModelForCausalLM
 
-name = "microsoft/phi-2/int4"
+name = "microsoft/phi-2"
 prompt = '''def print_prime(n):
     """
     Print all primes between 1 and n
     """'''
 
-device = "cpu"
+device = "cuda"
 
 if device == "cuda":
     provider = "CUDAExecutionProvider"
@@ -17,14 +17,16 @@ else:
     
 
 print("Loading tokenizer ...")
-tokenizer = AutoTokenizer.from_pretrained(f"{name}", use_auth_token=True)
+tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-2", use_auth_token=True)
 
 print("Loading model ...")
 model = ORTModelForCausalLM.from_pretrained(
        f'models/{name}',
        file_name=f"model.onnx",
        use_auth_token=True,
-       provider=provider
+       provider=provider,
+       use_cache=False,
+       use_io_binding=False
     )
 
 print("Running tokenizer ...")
