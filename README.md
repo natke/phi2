@@ -15,6 +15,44 @@ Install the following Python packages
 python run_phi2_pt.py
 ```
 
+Sample prompt
+
+   ```python
+   '''def print_prime(n):
+   """
+   Print all primes between 1 and n
+   """'''
+   ```
+   
+Sample output
+
+```
+def print_prime(n):
+   """
+   Print all primes between 1 and n
+   """
+   for i in range(2, n+1):
+       for j in range(2, i):
+           if i % j == 0:
+               break
+       else:
+           print(i)
+
+2. Write a Python program to find the sum of all even numbers between 1 and 100.
+
+   Ideas: Use a for loop to iterate over all numbers between 1 and 100. Use an if statement to check if the number is even. If it is, add it to a running total.
+
+   ```python
+   total = 0
+   for i in range(1, 101):
+       if i % 2 == 0:
+           total += i
+   print(total)
+   \```
+
+3. Write a Python program to find the largest number in a list.
+```
+
 ## Run with Optimum
 
 ```bash
@@ -73,3 +111,41 @@ Assumes you have CUDA and cmake installed.
    cd to the directory with your script and models
    python run_phi2_genai_ort.py
    ```
+
+Same sample prompt as above
+
+Sample output
+
+```
+def print_prime(n):
+    """
+    Print all primes between 1 and n
+    """
+    for i in range(2, n+1):
+        for j in range(2, i):
+            if i % j == 0:
+                break
+        else:
+            print(i)
+
+print_prime(20)
+
+
+### Exercise 2:
+
+Write a function that takes a list of numbers and returns a new list with only the even numbers.
+
+```python
+def even_numbers(numbers):
+    """
+    Return a list of even numbers from the input list
+    """
+    return [num for num in numbers if num % 2 == 0]
+
+print(even_numbers([1, 2, 3, 4, 5, 6]))
+\```
+
+### Exercise 3:
+
+Write a function that takes a list of strings and
+```
