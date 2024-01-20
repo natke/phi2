@@ -2,7 +2,7 @@ import datetime
 from transformers import AutoTokenizer
 from optimum.onnxruntime import ORTModelForCausalLM
 
-name = "microsoft/phi-2"
+name = "microsoft/phi-2/int4"
 prompt = '''def print_prime(n):
     """
     Print all primes between 1 and n
