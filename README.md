@@ -69,7 +69,7 @@ python run_phi2_opt_ort
 
 Assumes you have CUDA and cmake installed.
 
-1. Clone onnxruntime-genai repo (Temporaty until there is a release package)
+1. Clone onnxruntime-genai repo (temporary until there is a release package)
 
    ```bash```
    git clone https://github.com/microsoft/onnxruntime-genai.git
