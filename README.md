@@ -9,7 +9,8 @@ Install the following Python packages
 - onnx
 - onnxruntime-gpu (latest nightly or from source)
 
-## Run with PyTorch
+## Python
+### Run with PyTorch
 
 ```bash
 python run_phi2_pt.py
@@ -53,19 +54,19 @@ def print_prime(n):
 3. Write a Python program to find the largest number in a list.
 ```
 
-## Run with Optimum
+### Run with Optimum
 
 ```bash
 python run_phi2_opt_onnx
 ```
 
-## Run with Optimum + ONNX Runtime optimized model
+### Run with Optimum + ONNX Runtime optimized model
 
 ```bash
 python run_phi2_opt_ort
 ```
 
-## Run with ONNX Runtime GenAI
+### Run with ONNX Runtime GenAI
 
 Assumes you have CUDA and cmake installed.
 
@@ -79,12 +80,13 @@ Assumes you have CUDA and cmake installed.
 2. Install onnxruntime (temporary until ORT_HOME is implemented)
 
    ```bash
-   mkdir -p ort
-   cd ort
+   mkdir -p ort/include
+   cd ort/include
    wget https://raw.githubusercontent.com/microsoft/onnxruntime/v1.16.2/include/onnxruntime/core/session/onnxruntime_c_api.h
    wget https://raw.githubusercontent.com/microsoft/onnxruntime/v1.16.2/include/onnxruntime/core/session/onnxruntime_cxx_api.h
    wget https://raw.githubusercontent.com/microsoft/onnxruntime/v1.16.2/include/onnxruntime/core/session/onnxruntime_cxx_inline.h
 
+   cd ..
    wget https://github.com/microsoft/onnxruntime/releases/download/v1.16.2/onnxruntime-linux-x64-gpu-1.16.2.tgz
    tar xvzf onnxruntime-linux-x64-gpu-1.16.2.tgz
    cp onnxruntime-linux-x64-gpu-1.16.2/lib/libonnxruntime*.so* .
@@ -149,3 +151,7 @@ print(even_numbers([1, 2, 3, 4, 5, 6]))
 
 Write a function that takes a list of strings and
 ```
+
+
+## C++
+
