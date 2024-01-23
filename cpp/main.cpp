@@ -25,7 +25,7 @@ Print all primes between 1 and n
   auto tokenizer = model->CreateTokenizer();
   auto tokens = tokenizer->Encode(prompt);
 
-  Generators::SearchParams params{*model};
+  Generators::SearchParams params(*model);
   params.batch_size = 1;
   params.sequence_length = static_cast<int>(tokens.size());
   params.input_ids = tokens;
