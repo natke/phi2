@@ -32,7 +32,7 @@ detokenizer = onnxruntime.InferenceSession(f'models/microsoft/phi-2/detokenizer.
 tokens = tokenizer.run(None, { "input_text": np.array([prompt] ) })
 
 params=og.SearchParams(model)
-params.max_length = 200
+# params.max_length = 200
 params.input_ids = tokens[0]
 
 start_time=time.time()
