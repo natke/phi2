@@ -1,10 +1,9 @@
 import argparse
-import numpy as np
 import time
 import onnxruntime_genai as og
 
 argparser = argparse.ArgumentParser()
-argparser.add_argument('--name', type=str, default='microsoft/phi-2/fp32', help='Phi-2 model to run')
+argparser.add_argument('--name', type=str, default='microsoft/phi-2/fp16-cuda', help='Phi-2 model to run')
 
 name = argparser.parse_args().name
 
