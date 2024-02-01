@@ -163,3 +163,4 @@ cython_debug/
 *.data
 *.onnx_data
 *.swp
+vocab.json

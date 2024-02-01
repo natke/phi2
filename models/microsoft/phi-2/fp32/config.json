@@ -1,7 +1,7 @@
 {
   "model" : {
     "type": "phi2",
-    "decoder" : "phi-2_fp32_int4.onnx",
+    "decoder" : "phi-2_decoder_fp32_opt_inlined.onnx",
     "vocab_size": 51200,
     "hidden_size": 80,
     "num_attention_heads": 32,
