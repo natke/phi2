@@ -82,15 +82,19 @@ Assumes you have CUDA and cmake installed.
    ```bash
    mkdir -p ort/include
    cd ort/include
-   wget https://raw.githubusercontent.com/microsoft/onnxruntime/v1.16.2/include/onnxruntime/core/session/onnxruntime_c_api.h
-   wget https://raw.githubusercontent.com/microsoft/onnxruntime/v1.16.2/include/onnxruntime/core/session/onnxruntime_cxx_api.h
-   wget https://raw.githubusercontent.com/microsoft/onnxruntime/v1.16.2/include/onnxruntime/core/session/onnxruntime_cxx_inline.h
+   wget https://raw.githubusercontent.com/microsoft/onnxruntime/v1.16.3/include/onnxruntime/core/session/onnxruntime_c_api.h
+   wget https://raw.githubusercontent.com/microsoft/onnxruntime/v1.16.3/include/onnxruntime/core/session/onnxruntime_cxx_api.h
+   wget https://raw.githubusercontent.com/microsoft/onnxruntime/v1.16.3/include/onnxruntime/core/session/onnxruntime_cxx_inline.h
 
    cd ..
-   wget https://github.com/microsoft/onnxruntime/releases/download/v1.16.2/onnxruntime-linux-x64-gpu-1.16.2.tgz
-   tar xvzf onnxruntime-linux-x64-gpu-1.16.2.tgz
-   cp onnxruntime-linux-x64-gpu-1.16.2/lib/libonnxruntime*.so* .
+   mkdir -p ort/lib
+   cd ort/lib
+   wget https://github.com/microsoft/onnxruntime/releases/download/v1.16.3/onnxruntime-linux-x64-gpu-1.16.2.tgz
+   tar xvzf onnxruntime-linux-x64-gpu-1.16.3.tgz
+   cp onnxruntime-linux-x64-gpu-1.16.3/lib/libonnxruntime*.so* .
    ```
+
+   Or copy equivalent files from a local source build.
 
 3. Build onnxruntime-genai
 
@@ -105,8 +109,6 @@ Assumes you have CUDA and cmake installed.
 
    ```
    cd build
-   cp *.so wheel
-   cd wheel
    make PyPackageBuild
    ```
 
@@ -162,8 +164,9 @@ print(even_numbers([1, 2, 3, 4, 5, 6]))
 Write a function that takes a list of strings and
 ```
 
-
 ## C++
+
+Assumes onnxruntime-genai build steps
 
 1. 
 
