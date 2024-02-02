@@ -24,6 +24,8 @@ prompt = '''def print_prime(n):
 
 tokens = tokenizer.encode(prompt)
 
+print(tokens)
+
 params=og.SearchParams(model)
 params.max_length = 200
 params.input_ids = tokens
