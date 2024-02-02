@@ -101,13 +101,23 @@ Assumes you have CUDA and cmake installed.
    bash build.sh
    ```
 
-4. Set python path so onnxruntime-genai lib can be found by Python (temporary)
+4. Build Python wheel (temporary)
 
-   ```bash
-   export PYTHONPATH=`pwd`/build
+   ```
+   cd build
+   cp *.so wheel
+   cd wheel
+   make PyPackageBuild
    ```
 
-5. Run the script to generate text with Llama
+5. Install Python package
+
+   ```bash
+   cd wheel
+   pip install *.whl
+   ```
+
+6. Run the script to generate text
 
    ```bash
    cd to the directory with your script and models
