@@ -26,7 +26,7 @@ tokens = tokenizer.encode(prompt)
 
 params=og.SearchParams(model)
 params.max_length = 200
-params.input_ids = tokens[0]
+params.input_ids = tokens
 
 start_time=time.time()
 output_tokens=model.Generate(params)

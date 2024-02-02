@@ -25,8 +25,8 @@ Print all primes between 1 and n
   auto provider_options = Generators::GetDefaultProviderOptions(Generators::DeviceType::CUDA);
   auto model = Generators::CreateModel(*g_ort_env, "../models/microsoft/phi-2/int4", &provider_options);
 
-  //auto tokenizer = model->CreateTokenizer();
-  //auto tokens = tokenizer->Encode(prompt);
+  auto tokenizer = model->CreateTokenizer();
+  auto tokens = tokenizer->Encode(prompt);
   
   Generators::SearchParams params(*model);
   params.batch_size = 1;
@@ -37,6 +37,6 @@ Print all primes between 1 and n
   auto search = params.CreateSearch();
   auto result=model->Generate(params);
 
-  //std::cout << tokenizer->Decode(result) << "\r\n";
+  std::cout << tokenizer->Decode(result) << "\r\n";
   std::cout << "Test complete\r\n";
 }
