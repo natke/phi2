@@ -11,7 +11,7 @@ device_type = og.DeviceType.CPU
 #device_type = og.DeviceType.CUDA
 
 
-print("Loading model...")
+print(f"Loading model... {name} on {device_type}")
 model=og.Model(f'../models/{name}', device_type)
 print("Model loaded")
 
@@ -36,7 +36,7 @@ run_time=time.time()-start_time
 
 print(f"Tokens: {len(output_tokens)} Time: {run_time:.2f} Tokens per second: {len(output_tokens)/run_time:.2f}")
 
-text = tokenizer.batch_decode(output_tokens)[0]
+text = tokenizer.decode(output_tokens)
 
 print("Output:")
 print(text)
