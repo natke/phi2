@@ -163,4 +163,6 @@ cython_debug/
 *.data
 *.onnx_data
 *.swp
+cache_dir
+export.py
 

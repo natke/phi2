@@ -1,7 +1,7 @@
 {
   "model" : {
     "type": "phi2",
-    "decoder" : "phi-2_decoder_fp16_opt.onnx",
+    "decoder" : "phi2-fp16-cuda.onnx",
     "vocab_size": 51200,
     "hidden_size": 80,
     "num_attention_heads": 32,

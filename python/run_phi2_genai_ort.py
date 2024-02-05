@@ -3,13 +3,16 @@ import time
 import onnxruntime_genai as og
 
 argparser = argparse.ArgumentParser()
-argparser.add_argument('--name', type=str, default='microsoft/phi-2/int4-cpu', help='Phi-2 model to run')
+argparser.add_argument('--name', type=str, default='microsoft/phi-2/int4-cuda', help='Phi-2 model to run')
+argparser.add_argument('--device', type=str, default='cpu', help='cpu, cuda etc')
 
 name = argparser.parse_args().name
+device = argparser.parse_args().device
 
-device_type = og.DeviceType.CPU
-#device_type = og.DeviceType.CUDA
-
+if (device == 'cuda'):
+  device_type = og.DeviceType.CUDA
+else:
+  device_type = og.DeviceType.CPU
 
 print(f"Loading model... {name} on {device_type}")
 model=og.Model(f'../models/{name}', device_type)
