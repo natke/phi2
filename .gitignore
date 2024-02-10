@@ -169,5 +169,7 @@ export_tokenizer.py
 .vscode
 saved_model
 *.pdb
+*.o
+
 
 
