@@ -34,7 +34,7 @@ Print all primes between 1 and n
   params.input_ids = tokens;
   params.max_length = 128;
 
-  auto result=model->Generate(params);
+  auto result = model->Generate(params);
 
   std::cout << tokenizer->Decode(result) << "\r\n";
   std::cout << "Test complete\r\n";
