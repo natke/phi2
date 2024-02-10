@@ -1,10 +1,13 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-torch.set_default_device("cuda")
+torch.set_default_device("cpu")
 
 model = AutoModelForCausalLM.from_pretrained("microsoft/phi-2", torch_dtype=torch.float32, trust_remote_code=True)
+model.save_pretrained("saved_model")
+
 tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-2", trust_remote_code=True)
+tokenizer.save_pretrained("saved_model")
 
 inputs = tokenizer('''def print_prime(n):
    """

@@ -165,4 +165,9 @@ cython_debug/
 *.swp
 cache_dir
 export.py
+export_tokenizer.py
+.vscode
+saved_model
+*.pdb
+
 

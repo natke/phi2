@@ -5,7 +5,7 @@
 Install the following Python packages
 - transformers (latest from source)
 - optimum (latest from source)
-- acclerate
+- accelerate
 - onnx
 - onnxruntime-gpu (latest nightly or from source)
 
@@ -68,7 +68,7 @@ python run_phi2_opt_ort
 
 ### Run with ONNX Runtime GenAI
 
-Assumes you have CUDA and cmake installed.
+Assumes you have cmake installed.
 
 1. Clone onnxruntime-genai repo (temporary until there is a release package)
 
@@ -80,21 +80,17 @@ Assumes you have CUDA and cmake installed.
 2. Install onnxruntime (temporary until ORT_HOME is implemented)
 
    ```bash
-   mkdir -p ort/include
-   cd ort/include
-   wget https://raw.githubusercontent.com/microsoft/onnxruntime/v1.17.0/include/onnxruntime/core/session/onnxruntime_c_api.h
-   wget https://raw.githubusercontent.com/microsoft/onnxruntime/v1.17.0/include/onnxruntime/core/session/onnxruntime_cxx_api.h
-   wget https://raw.githubusercontent.com/microsoft/onnxruntime/v1.17.0/include/onnxruntime/core/session/onnxruntime_cxx_inline.h
-
-   cd ..
-   mkdir -p ort/lib
-   cd ort/lib
+   mkdir -o ort
+   cd ort
    wget https://github.com/microsoft/onnxruntime/releases/download/v1.17.0/onnxruntime-linux-x64-gpu-1.17.0.tgz
    tar xvzf onnxruntime-linux-x64-gpu-1.17.0.tgz
-   cp onnxruntime-linux-x64-gpu-1.17.0/lib/libonnxruntime*.so* .
+   mkdir -p include
+   mkdir -p lib
+   cp onnxruntime-linux-x64-gpu-1.17.0/include/onnxruntime_c_api.h include
+   cp onnxruntime-linux-x64-gpu-1.17.0/lib/libonnxruntime*.so* lib
    ```
 
-   Or copy equivalent files from a local source build.
+   Or copy equivalent files from a local source build
 
    ```
    ./build.sh --use_cuda --build_shared_lib --build_wheel --skip_tests --parallel
@@ -106,24 +102,23 @@ Assumes you have CUDA and cmake installed.
 
    ```bash
    cd ..
-   bash build.sh
+   python build.py
    ```
 
-4. Build Python wheel (temporary)
-
-   ```
-   cd build
-   make PyPackageBuild
-   ```
-
-5. Install Python package
+4. Install Python package
 
    ```bash
-   cd wheel
+   cd build/wheel
    pip install *.whl
    ```
 
-6. Run the script to generate text
+4. Export the model for the desired precision and execution target
+
+   ```
+   
+   ```
+
+5. Run the script to generate text
 
    ```bash
    cd to the directory with your script and models

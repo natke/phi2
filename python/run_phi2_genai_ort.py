@@ -18,7 +18,7 @@ print(f"Loading model... {name} on {device_type}")
 model=og.Model(f'../models/{name}', device_type)
 print("Model loaded")
 
-tokenizer = model.CreateTokenizer()
+tokenizer = model.create_tokenizer()
 
 prompt = '''def print_prime(n):
     """
@@ -29,12 +29,12 @@ tokens = tokenizer.encode(prompt)
 
 print(tokens)
 
-params=og.SearchParams(model)
+params=og.search_params(model)
 params.max_length = 200
 params.input_ids = tokens
 
 start_time=time.time()
-output_tokens=model.Generate(params)
+output_tokens=model.generate(params)
 run_time=time.time()-start_time
 
 print(f"Tokens: {len(output_tokens)} Time: {run_time:.2f} Tokens per second: {len(output_tokens)/run_time:.2f}")
