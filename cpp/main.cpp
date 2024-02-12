@@ -1,3 +1,5 @@
+#define USE_TOKENIZER 1
+#undef USE_CUDA
 #include <generators.h>
 #include <search.h>
 #include <models/model.h>
@@ -22,7 +24,7 @@ Print all primes between 1 and n
 
   std::cout << "With prompt:" << prompt << "\r\n";
 
-  auto provider_options = Generators::GetDefaultProviderOptions(Generators::DeviceType::CUDA);
+  auto provider_options = Generators::GetDefaultProviderOptions(Generators::DeviceType::CPU);
   auto model = Generators::CreateModel(*g_ort_env, "../models/microsoft/phi-2/int4", &provider_options);
 
   auto tokenizer = model->CreateTokenizer();
@@ -34,7 +36,7 @@ Print all primes between 1 and n
   params.input_ids = tokens;
   params.max_length = 128;
 
-  auto result = model->Generate(model, params);
+  auto result = Generators::Generate(*model, params);
 
   std::cout << tokenizer->Decode(result) << "\r\n";
   std::cout << "Test complete\r\n";

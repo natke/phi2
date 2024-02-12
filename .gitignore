@@ -170,6 +170,11 @@ export_tokenizer.py
 saved_model
 *.pdb
 *.o
+CMakeFiles
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+
 
 
 

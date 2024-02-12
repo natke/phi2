@@ -181,15 +181,18 @@ Write a function that takes a list of strings and
    cp src/config.h ${ORT_HOME}/include
    cp src/smartptrs.h ${ORT_HOME}/include
    cp src/onnxruntime_inline.h ${ORT_HOME}/include
+   cp src/tokenizers/tfmtok.h ${ORT_HOME}/include
+   cp src/tokenizers/tfmtok_c.h ${ORT_HOME}/include
    mkdir ${ORT_HOME}/include/models
    cp src/model.h ${ORT_HOME}/include/models
    cp src/onnxruntime_c_api.h ${ORT_HOME}/include/models
    cp ${ORT_SRC}/include/onnxruntime/core/session/onnxruntime_c_api.h ${ORT_HOME}/include/models
+
    ```
 
 3. Compile cpp/main.cpp
 
    ```bash
-   g++ -std=c++20 -I ${ORT_HOME}/include main.cpp
+   g++ -std=c++20 -I ${ORT_HOME}/include -L ${ORT_HOME}/lib main.cpp -lonnxruntime-genai-static 
    ```
 
