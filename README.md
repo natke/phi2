@@ -187,12 +187,20 @@ Write a function that takes a list of strings and
    cp src/model.h ${ORT_HOME}/include/models
    cp src/onnxruntime_c_api.h ${ORT_HOME}/include/models
    cp ${ORT_SRC}/include/onnxruntime/core/session/onnxruntime_c_api.h ${ORT_HOME}/include/models
-
+   mkdir -p ${ORT_HOME}/lib
+   cp build/*.so* ${ORT_HOME}/lib
    ```
 
 3. Compile cpp/main.cpp
 
    ```bash
-   g++ -std=c++20 -I ${ORT_HOME}/include -L ${ORT_HOME}/lib main.cpp -lonnxruntime-genai-static 
+   cmake .
+   make
+   ```
+
+4. Run the example
+
+   ```bash
+   ./example
    ```
 
