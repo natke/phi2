@@ -72,7 +72,7 @@ Assumes you have cmake installed.
 
 1. Clone onnxruntime-genai repo (temporary until there is a release package)
 
-   ```bash```
+   ```bash
    git clone https://github.com/microsoft/onnxruntime-genai.git
    cd onnxruntime-genai
    ```
@@ -165,7 +165,31 @@ Write a function that takes a list of strings and
 
 ## C++
 
-Assumes onnxruntime-genai build steps
 
-1. 
+1. Build onnxruntime-genai
+
+   ```bash
+   python build.py
+   ```
+
+2. Copy header files and library files to an install directory
+
+   ```bash
+   mkdir -p ${ORT_HOME}/include
+   cp src/generators.h ${ORT_HOME}/include
+   cp src/span.h ${ORT_HOME}/include
+   cp src/config.h ${ORT_HOME}/include
+   cp src/smartptrs.h ${ORT_HOME}/include
+   cp src/onnxruntime_inline.h ${ORT_HOME}/include
+   mkdir ${ORT_HOME}/include/models
+   cp src/model.h ${ORT_HOME}/include/models
+   cp src/onnxruntime_c_api.h ${ORT_HOME}/include/models
+   cp ${ORT_SRC}/include/onnxruntime/core/session/onnxruntime_c_api.h ${ORT_HOME}/include/models
+   ```
+
+3. Compile cpp/main.cpp
+
+   ```bash
+   g++ -std=c++20 -I ${ORT_HOME}/include main.cpp
+   ```
 
