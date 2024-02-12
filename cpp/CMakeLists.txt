@@ -44,7 +44,7 @@ target_include_directories(example PUBLIC ${ORT_HOME}/include)
 target_link_directories(example PUBLIC ${ORT_HOME}/lib)
 
 target_link_libraries(example PUBLIC
-  onnxruntime-genai-static
+  onnxruntime-genai
   onnxruntime
   # here you can add any library dependencies
 )
