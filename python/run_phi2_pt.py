@@ -4,17 +4,21 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 torch.set_default_device("cpu")
 
 model = AutoModelForCausalLM.from_pretrained("microsoft/phi-2", torch_dtype=torch.float32, trust_remote_code=True)
-model.save_pretrained("saved_model")
+
+#model.save_pretrained("saved_model")
 
 tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-2", trust_remote_code=True)
 tokenizer.save_pretrained("saved_model")
 
-inputs = tokenizer('''def print_prime(n):
-   """
-   Print all primes between 1 and n
-   """''', return_tensors="pt", return_attention_mask=False)
+print("Tokenizing ...")
+inputs = tokenizer('''Instruct: Summarize the following in a few sentences: A new study has found that evolution is not as unpredictable as previously thought, which could allow scientists to explore which genes could be useful to tackle real-world issues such as antibiotic resistance, disease, and climate change. The study, which is published in the Proceedings of the National Academy of Sciences (PNAS), challenges the long-standing belief about the unpredictability of evolution and has found that the evolutionary trajectory of a genome may be influenced by its evolutionary history, rather than determined by numerous factors and historical accidents. The study was led by Professor James McInerney and Dr. Alan Beavan from the School of Life Sciences at the University of Nottingham, and Dr. Maria Rosa Domingo-Sananes from Nottingham Trent University. \"The implications of this research are nothing short of revolutionary,\" said Professor McInerney, the lead author of the study. \"By demonstrating that evolution is not as random as we once thought, we've opened the door to an array of possibilities in synthetic biology, medicine, and environmental science.\" The team carried out an analysis of the pangenome-the complete set of genes within a given species, to answer a critical question of whether evolution is predictable or whether the evolutionary paths of genomes are dependent on their history and so not predictable today. Using a machine learning approach known as Random Forest, along with a dataset of 2,500 complete genomes from a single bacterial species, the team carried out several hundred thousand hours of computer processing to address the question. After feeding the data into their high-performance computer, the team first made \"gene families\" from each of the gene of each genome. \"In this way, we could compare like-with-like across the genomes,\" said Dr. Domingo-Sananes. Once the families had been identified, the team analyzed the pattern of how these families were present in some genomes and absent in others. \"We found that some gene families never turned up in a genome when a particular other gene family was already there, and on other occasions, some genes were very much dependent on a different gene family being present.\" In effect, the researchers discovered an invisible ecosystem where genes can cooperate or can be in conflict with one another. \"These interactions between genes make aspects of evolution somewhat predictable and furthermore, we now have a tool that allows us to make those predictions,\" adds Dr. Domingo-Sananes. Dr. Beavan said, \"From this work, we can begin to explore which genes 'support' an antibiotic resistance gene, for example. Therefore, if we are trying to eliminate antibiotic resistance, we can target not just the focal gene, but we can also target its supporting genes.\" \"We can use this approach to synthesize new kinds of genetic constructs that could be used to develop new drugs or vaccines. Knowing what we now know has opened the door to a whole host of other discoveries.\" The implications of the research are far-reaching and could lead to: * Novel Genome Design-allowing scientists to design synthetic genomes and providing a roadmap for the predictable manipulation of genetic material. * Combating Antibiotic Resistance-Understanding the dependencies between genes can help identify the 'supporting cast' of genes that make antibiotic resistance possible, paving the way for targeted treatments. * Climate Change Mitigation-Insights from the study could inform the design of microorganisms engineered to capture carbon or degrade pollutants, thereby contributing to efforts to combat climate change. * Medical Applications-The predictability of gene interactions could revolutionize personalized medicine by providing new metrics for disease risk and treatment efficacy.\nOutput:
+''', return_tensors="pt", return_attention_mask=True, verbose=True, max_length=2048, add_special_tokens=True)
 
-outputs = model.generate(**inputs, max_length=200)
-print(outputs.shape)
+print(f'Generating ...')
+outputs = model.generate(**inputs, max_length=2048, use_cache=True, repetition_penalty=1.1, do_sample=False, num_beams=5)
+
+#, repetition_penalty=1.0, do_sample=True, top_k=40, top_p=0.7, temperature=1.0, num_return_sequences=1, use_cache=True, pad_token_id=tokenizer.eos_token_id, eos_token_id=tokenizer.eos_token_id)
+
+print(f'Decoding ... {outputs.shape}')
 text = tokenizer.batch_decode(outputs)[0]
 print(text)
