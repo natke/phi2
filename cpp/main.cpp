@@ -25,7 +25,7 @@ Print all primes between 1 and n
   std::cout << "With prompt:" << prompt << "\r\n";
 
   auto provider_options = Generators::GetDefaultProviderOptions(Generators::DeviceType::CPU);
-  auto model = Generators::CreateModel(*g_ort_env, "../models/microsoft/phi-2/int4", &provider_options);
+  auto model = Generators::CreateModel(*g_ort_env, "../models/microsoft/phi-2/int4-cpu", &provider_options);
 
   auto tokenizer = model->CreateTokenizer();
   auto tokens = tokenizer->Encode(prompt);
